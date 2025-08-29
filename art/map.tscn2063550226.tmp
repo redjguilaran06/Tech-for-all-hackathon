@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://caf6b7eblkkl6"]
+
+[ext_resource type="Texture2D" uid="uid://cgn6f3udq71iv" path="res://664b7786-0dc1-4980-97d1-94ce3302abe4.jpg" id="1_c7s6e"]
+[ext_resource type="Texture2D" uid="uid://s811mb4trrt0" path="res://map-pin-user-fill.png" id="2_wijl4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wijl4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0an3"]
+bg_color = Color(0.834614, 0.834614, 0.834614, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="map" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1084.0
+offset_bottom = 1913.0
+texture = ExtResource("1_c7s6e")
+
+[node name="firstUser" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 1274.0
+offset_right = 393.0
+offset_bottom = 1382.0
+texture = ExtResource("2_wijl4")
+
+[node name="firstUserButton" type="Button" parent="firstUser"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 108.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wijl4")
+
+[node name="secondUser" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 807.0
+offset_top = 798.0
+offset_right = 931.0
+offset_bottom = 906.0
+texture = ExtResource("2_wijl4")
+
+[node name="secondUserButton" type="Button" parent="secondUser"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 119.0
+offset_bottom = 113.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wijl4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 921.0
+offset_right = 965.0
+offset_bottom = 1093.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0an3")
+
+[node name="fight" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 38.0
+offset_right = 320.0
+offset_bottom = 134.0
+theme_override_font_sizes/font_size = 45
+text = "Fight"
+
+[node name="ignore" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 42.0
+offset_right = 715.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 45
+text = "Ignore
+"

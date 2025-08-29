@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5eebdr5o1iu7"]
+
+[sub_resource type="GDScript" id="GDScript_p7y5c"]
+script/source = "class_name StatusView
+extends Control
+
+const STATUS_TOOLTIP = preload(\"res://scenes/ui/status_tooltip.tscn\")
+
+@onready var status_tooltips: VBoxContainer = %StatusTooltips
+
+
+func _ready() -> void:
+	for tooltip: StatusTooltip in status_tooltips.get_children():
+		tooltip.queue_free()
+		
+	Events.status_tooltip_requested.connect(show_view)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"ui_cancel\") and visible:
+		hide_view()
+
+
+func show_view(statuses: Array[Status]) -> void:
+	for status: Status in statuses:
+		var new_status_tooltip := STATUS_TOOLTIP.instantiate() as StatusTooltip
+		status_tooltips.add_child(new_status_tooltip)
+		new_status_tooltip.status = status
+	show()
+
+
+func hide_view() -> void:
+	for tooltip: StatusTooltip in status_tooltips.get_children():
+		tooltip.queue_free()
+	hide()
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"left_mouse\") and visible:
+		hide_view()
+
+
+func _on_back_button_pressed() -> void:
+	hide_view()
+"
+
+[node name="StatusView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_p7y5c")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatusTooltips" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 15)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 21.0
+grow_horizontal = 0
+text = "Back"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
