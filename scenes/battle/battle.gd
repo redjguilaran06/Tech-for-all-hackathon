@@ -56,5 +56,4 @@ func _on_relics_activated(type: Relic.Type) -> void:
 			player_handler.start_battle(char_stats)
 			battle_ui.initialize_card_pile_ui()
 		Relic.Type.END_OF_COMBAT:
-			var exp_reward := randi_range(20, 50)  # random EXP between 20 and 50
-			Events.battle_over_screen_requested.emit("You defeated the enemy!", BattleOverPanel.Type.WIN, exp_reward)
+			Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)

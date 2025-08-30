@@ -53,6 +53,7 @@ position = Vector2(566, 1019.43)
 stats = ExtResource("8_d4c2d")
 
 [node name="CrabEnemy" parent="EnemyHandler" instance=ExtResource("2_02s5s")]
+texture_filter = 1
 position = Vector2(699, 754)
 stats = ExtResource("5_5flmk")
 
@@ -61,7 +62,8 @@ position = Vector2(859, 1023)
 stats = ExtResource("8_d4c2d")
 
 [node name="Player" parent="." instance=ExtResource("3_dpj45")]
-position = Vector2(190, 1015)
+texture_filter = 1
+position = Vector2(100, 1080)
 stats = ExtResource("4_fwb8a")
 
 [node name="CardTargetSelector" parent="." instance=ExtResource("3_vyv1n")]
