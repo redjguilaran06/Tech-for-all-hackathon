@@ -84,6 +84,7 @@ size_flags_horizontal = 3
 
 [node name="RelicHandler" parent="TopBar/BarItems/RelicHandlerContainer" instance=ExtResource("6_f8fbw")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
